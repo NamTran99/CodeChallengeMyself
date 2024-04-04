@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:endColor="@color/end_light_shimmer"
+        android:centerColor="@color/center_shimmer"
+        android:startColor="@color/start_dark_shimmer"/>
+    <corners android:radius="@dimen/_5dp" />
+</shape>

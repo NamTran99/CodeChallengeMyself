@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <xyz.peridy.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_width="50dp"
+        app:shimmer_angle="20"
+        app:shimmer_duration="8000"
+        app:shimmer_color="#70DACCCC"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_swift_mail"/>
+
+
+    </xyz.peridy.shimmerlayout.ShimmerLayout>
+</layout>

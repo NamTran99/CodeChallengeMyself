@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        maven { url "https://jcenter.bintray.com" }
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -10,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jcenter.bintray.com" }
     }
 }
 rootProject.name = "My Application"
