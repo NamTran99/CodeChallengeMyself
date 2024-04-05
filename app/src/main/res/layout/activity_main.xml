@@ -14,7 +14,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/abc"
-            android:name="com.example.myapplication.ui.screen.FragmentShimmerLayout"
+            android:name="com.example.myapplication.ui.screen.FragmentDemoUI"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
