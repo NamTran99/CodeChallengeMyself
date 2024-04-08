@@ -100,10 +100,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:drawableEnd="@drawable/ic_arrow_right"
                 android:text="Continue"
                 app:backgroundTint="#6750A4"
