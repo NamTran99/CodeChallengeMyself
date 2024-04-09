@@ -4,4 +4,5 @@
     <dimen name="_15dp">15dp</dimen>
     <dimen name="_32dp">32dp</dimen>
     <dimen name="_10dp">10dp</dimen>
+    <dimen name="_2dp">2dp</dimen>
 </resources>

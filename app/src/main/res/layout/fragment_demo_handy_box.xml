@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_setup_mail"
+        tools:context=".MainActivity">
+
+        <com.example.myapplication.ui.widget.HandyBoxDialog
+            android:id="@+id/handyBox"
+            android:layout_margin="@dimen/_10dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_corner_10_white"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btChangeStatus"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Status"/>
+
+
+    </LinearLayout>
+</layout>

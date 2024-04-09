@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="txt_handy_box_welcome">Here is a handy dialogue box, wishing you have a great day!</string>
+    <string name="txt_handy_box_loading">Wait a minutes! We are finding your mail server</string>
+    <string name="txt_handy_box_error_network">Whoops… no internet connection found.\nCheck your connection.</string>
+    <string name="txt_error">Server not found</string>
 </resources>
