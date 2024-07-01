@@ -13,4 +13,8 @@
     <color name="end_light_shimmer">#3D3D3E</color>
     <color name="center_shimmer">#2C2C32</color>
     <color name="start_dark_shimmer">#1D1D25</color>
+
+    <color name="end_bg_ai_box">#87B6E1</color>
+    <color name="center_bg_ai_box">#9868E5</color>
+    <color name="start_bg_ai_box">#5861B3</color>
 </resources>

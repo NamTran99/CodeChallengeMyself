@@ -1,6 +1,9 @@
 package com.example.myapplication.extensions
 
+import android.content.Context
+import android.content.res.TypedArray
 import android.os.SystemClock
+import android.util.AttributeSet
 import android.view.View
 import androidx.core.view.isInvisible
 
@@ -56,3 +59,9 @@ fun View.setOnSafeClickListener(onSafeClick: (View) -> Unit) {
     )
 }
 
+fun Context.loadAttrs(attrs: AttributeSet?, attrType: IntArray, function: TypedArray.() -> Unit) {
+    if (attrs == null) return
+    val a = obtainStyledAttributes(attrs, attrType)
+    function(a)
+    a.recycle()
+}

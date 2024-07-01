@@ -4,4 +4,7 @@
     <string name="txt_handy_box_loading">Wait a minutes! We are finding your mail server</string>
     <string name="txt_handy_box_error_network">Whoops… no internet connection found.\nCheck your connection.</string>
     <string name="txt_error">Server not found</string>
+    <string name="conversation_summary">Conversation Summary</string>
+    <string name="ai_bot_title">Conversation Summary</string>
+    <string name="ai_bot_title_ready">Conversation Summary</string>
 </resources>
