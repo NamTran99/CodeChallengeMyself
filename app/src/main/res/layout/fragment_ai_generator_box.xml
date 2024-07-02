@@ -20,19 +20,22 @@
             android:layout_marginHorizontal="@dimen/_10dp"
             android:layout_height="400dp">
 
-            <com.example.myapplication.ui.widget.ViewStrokeBg
+            <com.example.myapplication.ui.widget.AiGeneratorBox
+                android:id="@+id/boxAi"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:ai_background="@color/white"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAbc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="abc"/>
 
     </LinearLayout>
 </layout>

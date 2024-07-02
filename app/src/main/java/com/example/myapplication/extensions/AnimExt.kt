@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.animation.AnimationUtils
+import com.example.myapplication.R
 
 fun View.moveViewToRight(duration: Long = 1000) {
     val displayMetrics = DisplayMetrics()
@@ -16,4 +18,10 @@ fun View.moveViewFromBottom(duration: Long = 1000) {
     val (screenWidth, screenHeight) = context.getScreenSize()
     translationY = screenHeight
     animate().translationY(0f).setDuration(duration).start()
+}
+
+
+fun View.fadeInFromRight(){
+    val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_from_right)
+    startAnimation(animation)
 }

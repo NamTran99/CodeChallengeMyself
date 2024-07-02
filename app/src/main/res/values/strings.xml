@@ -6,5 +6,5 @@
     <string name="txt_error">Server not found</string>
     <string name="conversation_summary">Conversation Summary</string>
     <string name="ai_bot_title">Conversation Summary</string>
-    <string name="ai_bot_title_ready">Conversation Summary</string>
+    <string name="ai_bot_title_ready">Click to Conversation Summary</string>
 </resources>

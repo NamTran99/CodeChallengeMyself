@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.os.SystemClock
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import androidx.core.view.isInvisible
 
 fun <T : View> T.show(b: Boolean = true, function: T.() -> Unit = {}) {
@@ -27,11 +28,10 @@ fun <T : View> T.visible(b: Boolean = true, function: T.() -> Unit = {}) {
         View.VISIBLE
     } else View.INVISIBLE
 }
-
-fun View.hide(b: Boolean) {
-    if(b){
+fun View.hide(b: Boolean = true) {
+    if (b) {
         visibility = View.GONE
-    }else{
+    } else {
         visibility = View.VISIBLE
     }
 }
@@ -64,4 +64,14 @@ fun Context.loadAttrs(attrs: AttributeSet?, attrType: IntArray, function: TypedA
     val a = obtainStyledAttributes(attrs, attrType)
     function(a)
     a.recycle()
+}
+
+fun ImageView.toggleImage(isActive: Boolean, activeImage: Int, inActiveImage: Int, onClickListener: ((Boolean) -> Unit )? = null){
+    var mIsActive = isActive
+    setImageResource(if(mIsActive) activeImage else inActiveImage)
+    setOnClickListener {
+        mIsActive = !isActive
+        setImageResource(if(isActive) activeImage else inActiveImage)
+        onClickListener?.invoke(mIsActive)
+    }
 }
