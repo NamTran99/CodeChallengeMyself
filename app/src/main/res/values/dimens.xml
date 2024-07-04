@@ -5,4 +5,8 @@
     <dimen name="_32dp">32dp</dimen>
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_2dp">2dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_40dp">40dp</dimen>
+    <dimen name="_1dp">1dp</dimen>
+    <dimen name="_0dp">0dp</dimen>
 </resources>

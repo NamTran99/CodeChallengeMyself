@@ -32,8 +32,7 @@ class FragmentAiGeneratorBox : BaseFragment<FragmentAiGeneratorBoxBinding>() {
                 object : IOnAIGeneratorCallBack{
                     override fun onCallData() {
                         viewLifecycleOwner.lifecycleScope.launch {
-                            val response = generativeModel.generateContent(prompt)
-                            boxAi.setStatus(AIGeneratorStatus.Success(content = response.text?: "loi nhe"))
+
                         }
                     }
                 }

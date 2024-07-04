@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".MainActivity">
+        <requestFocus />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:src="@drawable/ic_robot_round"
+            android:translationZ="@dimen/_1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/lvMain"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40dp"
+            android:layout_marginStart="@dimen/_20dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/view_ripple"
+            android:backgroundTint="#E5E6F2"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="@dimen/_20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView">
+
+            <LinearLayout
+                android:id="@+id/lvExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/FocusClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_20dp"
+                    android:text="Ai translator" />
+
+                <TextView
+                    style="@style/FocusClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_20dp"
+                    android:text="Ai translator" />
+
+                <TextView
+                    style="@style/FocusClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_20dp"
+                    android:text="Ai translator" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lvCollapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20dp"
+                    android:text="Ai helper" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:src="@drawable/ic_arrow_right_2" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <requestFocus />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

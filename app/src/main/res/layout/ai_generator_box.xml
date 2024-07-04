@@ -63,9 +63,9 @@
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_weight="1"
                     android:text="@string/conversation_summary"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
@@ -78,7 +78,7 @@
                     android:id="@+id/imgExpand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_down"/>
+                    android:src="@drawable/ic_arrow_down" />
             </LinearLayout>
 
             <com.example.myapplication.ui.widget.Typewriter
@@ -90,6 +90,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
             <LinearLayout
                 android:id="@+id/grAction"
                 android:layout_width="match_parent"
@@ -105,31 +106,31 @@
 
                 <ImageView
                     android:id="@+id/imgHeart"
+                    style="@style/FocusClickBorderLess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    style="@style/FocusClickBorderLess"
                     android:src="@drawable/ic_heart_less"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="12dp" />
 
                 <ImageView
                     android:id="@+id/imgCopy"
+                    style="@style/FocusClickBorderLess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:src="@drawable/ic_copy"
-                    style="@style/FocusClickBorderLess"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="12dp" />
 
                 <ImageView
                     android:id="@+id/imgSetting"
+                    style="@style/FocusClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:src="@drawable/ic_setting"
-                    style="@style/FocusClick"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="12dp" />
 
