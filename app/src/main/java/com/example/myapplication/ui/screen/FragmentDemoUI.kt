@@ -18,9 +18,6 @@ class FragmentDemoUI : BaseFragment<FragmentDemoUiBinding>(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            btnAdd.setOnClickListener {
-                lvMain.addMoreOptionView()
-            }
         }
     }
 }

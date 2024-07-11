@@ -6,24 +6,15 @@
 
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <com.example.myapplication.ui.widget.ConstrainStrokeLinearBg
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:focusable="true"
         android:paddingTop="@dimen/_40dp"
         android:orientation="vertical"
         android:focusableInTouchMode="true"
         tools:context=".MainActivity">
 
-        <com.example.myapplication.ui.widget.ViewAiWriterOptionsGroup
-            android:id="@+id/lvMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="add"/>
-    </LinearLayout>
+    </com.example.myapplication.ui.widget.ConstrainStrokeLinearBg>
 </layout>
