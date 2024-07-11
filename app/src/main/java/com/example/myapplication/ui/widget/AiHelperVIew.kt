@@ -13,7 +13,7 @@ import com.example.myapplication.extensions.show
 
 interface IAiHelperCallback {
     fun onClickTranslator()
-    fun onClickWriter()
+    fun onClickWriter(viewAiWriterOptions: ViewAiWriterOptions)
     fun onClickChecker()
 }
 

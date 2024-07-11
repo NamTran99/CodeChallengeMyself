@@ -14,15 +14,12 @@ class FragmentDemoUI : BaseFragment<FragmentDemoUiBinding>(){
     override val layoutId: Int
         get() = R.layout.fragment_demo_ui
 
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            binding.lvMain.setOnOutsideClickListenerForView(viewBotHelper){
-                viewBotHelper.setIsExpandView(false)
+            btnAdd.setOnClickListener {
+                lvMain.addMoreOptionView()
             }
         }
     }

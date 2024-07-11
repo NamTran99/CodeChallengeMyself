@@ -4,13 +4,13 @@
     <style name="FocusClick" >
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:foreground">?attr/controlBackground</item>
     </style>
 
     <style name="FocusClickBorderLess" >
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:foreground">?attr/controlBackground</item>
     </style>
 
     <style name="Button.Default" parent="ThemeOverlay.Material3.Button" >
@@ -20,6 +20,12 @@
         <item name="android:insetBottom">0dp</item>
     </style>
 
+
+    <style name="ImageClick" parent="FocusClick">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
 
     <declare-styleable name="ViewStrokeBg">
         <attr name="cornerRadius" format="dimension" />
