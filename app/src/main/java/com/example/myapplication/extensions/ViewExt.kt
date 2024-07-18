@@ -4,9 +4,14 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.os.SystemClock
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.LayoutRes
 import androidx.core.view.isInvisible
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 fun <T : View> T.show(b: Boolean = true, function: T.() -> Unit = {}) {
     visibility = if (b) {
@@ -74,4 +79,11 @@ fun ImageView.toggleImage(isActive: Boolean, activeImage: Int, inActiveImage: In
         setImageResource(if(isActive) activeImage else inActiveImage)
         onClickListener?.invoke(mIsActive)
     }
+}
+
+fun <T : ViewDataBinding> ViewGroup.inflateBinding(
+    @LayoutRes layoutId: Int,
+    attach: Boolean = false,
+): T {
+    return DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, this, attach)
 }
