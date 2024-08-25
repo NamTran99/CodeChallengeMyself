@@ -8,34 +8,27 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_setup_mail"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:background="@android:color/transparent"
-            android:layout_marginHorizontal="@dimen/_10dp"
-            android:layout_height="400dp">
-
-            <com.example.myapplication.ui.widget.AiGeneratorBox
-                android:id="@+id/boxAi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAbc"
-            android:layout_width="wrap_content"
+            android:id="@+id/lvRoot"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="abc"/>
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="qwje"
+            app:icon="@drawable/ic_ai_bot"
+            app:iconGravity="textStart"
+            app:iconPadding="15dp"
+            app:strokeColor="?attr/colorOutline"
+            tools:context=".changelog.ChangelogFragment" />
 
     </LinearLayout>
 </layout>
