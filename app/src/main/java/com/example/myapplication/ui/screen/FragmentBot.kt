@@ -6,9 +6,6 @@ import androidx.core.graphics.rotationMatrix
 import com.example.myapplication.R
 import com.example.myapplication.core.platform.BaseFragment
 import com.example.myapplication.databinding.FragmentDemoHandyBoxBinding
-import com.example.myapplication.databinding.FragmentDemoUiBinding
-import com.example.myapplication.databinding.FragmentShimmerLayoutBinding
-import com.example.myapplication.extensions.moveViewFromBottom
 import com.example.myapplication.extensions.setOnSafeClickListener
 import com.example.myapplication.ui.widget.HandyBoxData
 import com.example.myapplication.ui.widget.HandyBoxStatus

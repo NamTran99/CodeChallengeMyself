@@ -20,6 +20,11 @@ abstract class BaseFragment<T: ViewDataBinding>: Fragment() {
     abstract val layoutId: Int
     open fun onBackPressed() {}
 
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: NamTD8 ${this::class.simpleName}")
+    }
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

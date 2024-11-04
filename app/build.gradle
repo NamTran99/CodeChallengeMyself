@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-    implementation 'xyz.peridy.shimmer:shimmerlayout:1.1'
     implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'com.airbnb.android:lottie:6.1.0'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')

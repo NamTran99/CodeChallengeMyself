@@ -9,9 +9,9 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url "https://jcenter.bintray.com" }
         google()
         mavenCentral()
-        maven { url "https://jcenter.bintray.com" }
     }
 }
 rootProject.name = "CodingChallage"
