@@ -32,8 +32,6 @@ open class MultipleViewHolderAdapter(
     ) {
         holder.bind(getItem(position), position)
     }
-
-
 }
 
 class ViewHolderList(
