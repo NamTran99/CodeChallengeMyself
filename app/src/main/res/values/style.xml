@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="FocusClick" >
+    <style name="FocusClickForeground">
         <item name="android:clickable">true</item>
+        <item name="android:foreground">@drawable/ripple_icon_no_background_color</item>
         <item name="android:focusable">true</item>
-        <item name="android:foreground">?attr/controlBackground</item>
     </style>
 
-    <style name="FocusClickBorderLess" >
+    <style name="FocusClickBackground">
         <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_icon_no_background_color</item>
         <item name="android:focusable">true</item>
-        <item name="android:foreground">?attr/controlBackground</item>
     </style>
 
     <style name="Button.Default" parent="ThemeOverlay.Material3.Button" >
