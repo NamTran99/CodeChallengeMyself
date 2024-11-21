@@ -1,5 +1,8 @@
 package com.example.myapplication.extensions
 
+import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.navOptions
 import java.math.BigDecimal
 
 fun String?.convertStringToNumber(): Float {
@@ -36,4 +39,29 @@ fun String?.convertStringToBigDecimalNumber(scale: Int? = null): BigDecimal {
         return result.setScale(scale)
     }
     return result
+}
+
+fun NavController.navigateWithAnim(
+    idDestination: Int,
+    bundle: Bundle? = null,
+    popupToId: Int? = null
+) {
+    val anim = navOptions {
+//        anim {
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//        }
+        popupToId?.let {
+            popUpTo(popupToId) {
+                inclusive = true
+            }
+        }
+    }
+    // TungVu - STABI-265 - 17/01/2023
+    try {
+        this.navigate(idDestination, bundle, anim)
+    } catch (exception: Exception) {
+    }
 }
