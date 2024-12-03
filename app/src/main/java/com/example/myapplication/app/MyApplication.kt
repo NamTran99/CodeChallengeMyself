@@ -3,10 +3,12 @@ package com.example.myapplication.app
 import android.app.Application
 import android.content.Context
 import com.example.myapplication.local.PrefUtil
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication: Application() {
+@HiltAndroidApp
+class MyApplication : Application() {
 
-    companion object{
+    companion object {
         lateinit var appContext: Context
             private set
     }
@@ -14,9 +16,5 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         appContext = applicationContext
-
-       val pre = PrefUtil.getInstance(applicationContext)
-
-        pre.putValue("BAC" , 5)
     }
 }
