@@ -23,7 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class EWalletBottomSheet<DB : ViewDataBinding> : BottomSheetDialogFragment() {
+abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFragment() {
     open val bottomSheetData: EWalletBottomSheetData = EWalletBottomSheetData()
     lateinit var binding: DB
 

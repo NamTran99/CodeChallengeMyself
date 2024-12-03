@@ -12,6 +12,9 @@ import androidx.annotation.LayoutRes
 import androidx.core.view.isInvisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 
 fun <T : View> T.show(b: Boolean = true, function: T.() -> Unit = {}) {
     visibility = if (b) {
@@ -86,4 +89,36 @@ fun <T : ViewDataBinding> ViewGroup.inflateBinding(
     attach: Boolean = false,
 ): T {
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, this, attach)
+}
+
+private fun RecyclerView.smoothScrollToPositionAtTop(position: Int) {
+    val layoutManager = this.layoutManager as? LinearLayoutManager ?: return
+
+    val smoothScroller = object : LinearSmoothScroller(this.context) {
+        override fun calculateDyToMakeVisible(view: View?, snapPreference: Int): Int {
+            return -(view?.top ?: 0)
+        }
+    }
+
+    smoothScroller.targetPosition = position
+    layoutManager.startSmoothScroll(smoothScroller)
+}
+
+private fun RecyclerView.smoothScrollItemToCenter(position: Int) {
+    val layoutManager = this.layoutManager as? LinearLayoutManager ?: return
+
+    val smoothScroller = object : LinearSmoothScroller(this.context) {
+        override fun calculateDyToMakeVisible(view: View?, snapPreference: Int): Int {
+            return 0
+        }
+
+        override fun calculateDxToMakeVisible(view: View?, snapPreference: Int): Int {
+            val parentCenter = width / 2
+            val childCenter = (view?.left ?: 0) + (view?.width ?: 0) / 2
+            return parentCenter - childCenter
+        }
+    }
+
+    smoothScroller.targetPosition = position
+    layoutManager.startSmoothScroll(smoothScroller)
 }

@@ -21,7 +21,7 @@
     </style>
 
 
-    <style name="ImageClick" parent="FocusClick">
+    <style name="ImageClick" parent="FocusClickBackground">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:padding">12dp</item>

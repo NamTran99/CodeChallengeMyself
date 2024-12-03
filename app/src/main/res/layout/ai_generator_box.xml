@@ -106,7 +106,7 @@
 
                 <ImageView
                     android:id="@+id/imgHeart"
-                    style="@style/FocusClickBorderLess"
+                    style="@style/FocusClickBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -116,7 +116,7 @@
 
                 <ImageView
                     android:id="@+id/imgCopy"
-                    style="@style/FocusClickBorderLess"
+                    style="@style/FocusClickBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -126,7 +126,7 @@
 
                 <ImageView
                     android:id="@+id/imgSetting"
-                    style="@style/FocusClick"
+                    style="@style/FocusClickBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
