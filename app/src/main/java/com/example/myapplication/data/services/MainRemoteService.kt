@@ -36,7 +36,6 @@ class MainRemoteService(val openAIService: OpenAIService) {
 
     @SuppressLint("HardwareIds")
     private suspend fun getVulanToken(): VulanTokenResponse {
-        Log.d("TAG", "useApiToken: NamTD8")
         val vulanTokenRequest = VulanTokenRequest(userID, null, null, null, null)
         return openAIService.getToken(vulanTokenRequest)
     }

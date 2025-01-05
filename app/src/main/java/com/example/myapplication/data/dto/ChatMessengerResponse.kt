@@ -1,7 +1,7 @@
 package com.example.myapplication.data.dto
 
-import com.bytedance.sdk.component.pglcrypt.PglCryptUtils
-import com.google.gson.annotations.SerializedName
+//import com.bytedance.sdk.component.pglcrypt.PglCryptUtils
+//import com.google.gson.annotations.SerializedName
 
 //data class ChatMessengerResponse(
 //    @SerializedName(PglCryptUtils.KEY_MESSAGE)

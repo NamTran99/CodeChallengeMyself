@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
-    releaseImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
-    debugImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
-    implementation(files("libs/ads-sdk-6.1.0.6.aar"))
+//    releaseImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
+//    debugImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
+//    implementation(files("libs/ads-sdk-6.1.0.6.aar"))
 }

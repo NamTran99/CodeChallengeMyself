@@ -9,4 +9,7 @@
     <dimen name="_40dp">40dp</dimen>
     <dimen name="_1dp">1dp</dimen>
     <dimen name="_0dp">0dp</dimen>
+    <dimen name="slidetoact_default_area_margin">8dp</dimen>
+    <dimen name="slidetoact_default_icon_margin">16dp</dimen>
+    <dimen name="slidetoact_default_text_size">16sp</dimen>
 </resources>

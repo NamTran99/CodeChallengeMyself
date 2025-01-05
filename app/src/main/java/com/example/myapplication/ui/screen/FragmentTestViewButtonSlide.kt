@@ -8,15 +8,15 @@ import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.core.platform.BaseFragment
 import com.example.myapplication.data.services.MainRemoteService
-import com.example.myapplication.databinding.FragmentOnTouchViewBinding
+import com.example.myapplication.databinding.FragmentTestViewButtonSlideBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FragmentTestCallApi : BaseFragment<FragmentOnTouchViewBinding>() {
+class FragmentTestViewButtonSlide : BaseFragment<FragmentTestViewButtonSlideBinding>() {
     override val layoutId: Int
-        get() = R.layout.fragment_on_touch_view
+        get() = R.layout.fragment_test_view_button_slide
 
     @Inject
     lateinit var mainRemoteService: MainRemoteService

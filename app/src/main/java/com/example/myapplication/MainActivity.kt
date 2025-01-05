@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import umagic.ai.aiart.retrofit.TokenUtils
+//import umagic.ai.aiart.retrofit.TokenUtils
 import java.util.UUID
 
 @AndroidEntryPoint
@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         Log.d("TAG","Kiến trúc chính: $primaryAbi")
 
         val a = UUID.randomUUID().toString()
-        TokenUtils.initLib()
-        val b = TokenUtils.tokenUtilsInstance?.paramsToken(a)
-        Log.d("TAG", "onResume: NamTD8 ${a} - ${b}")
+//        TokenUtils.initLib()
+//        val b = TokenUtils.tokenUtilsInstance?.paramsToken(a)
+//        Log.d("TAG", "onResume: NamTD8 ${a} - ${b}")
     }
 
     // unfocus && close keyboard edittext when select outside

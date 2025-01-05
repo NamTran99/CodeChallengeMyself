@@ -13,4 +13,5 @@
     <string name="hint_ai_writer_3">Thank you for your information</string>
     <string name="hint_ai_writer_default">Write your idea …</string>
     <string name="title_dynamicfeature">Module Title</string>
+    <string name="slidetoact_accessibility_action_description">Complete</string>
 </resources>

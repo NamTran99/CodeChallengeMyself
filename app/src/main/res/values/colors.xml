@@ -18,4 +18,7 @@
     <color name="center_bg_ai_box">#9868E5</color>
     <color name="start_bg_ai_box">#5861B3</color>
     <color name="colorRippleIcon">#C3C3C3</color>
+
+    <color name="slidetoact_white">#FFFFFF</color>
+    <color name="slidetoact_defaultAccent">#FF4081</color>
 </resources>
