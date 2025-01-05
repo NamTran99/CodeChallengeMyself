@@ -1,5 +1,6 @@
 package com.example.myapplication.di
 
+import app.swiftmail.data.helper.interceptor.CurlLoggerInterceptor
 import com.example.myapplication.data.api.OpenAIService
 import com.example.myapplication.data.services.MainRemoteService
 import dagger.Module
@@ -17,39 +18,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(httpLoggingInterceptor: HttpLoggingInterceptor): Retrofit {
-        val okHttpClientBuilder = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .readTimeout(60L, TimeUnit.SECONDS)
-
-        return Retrofit.Builder()
-            .baseUrl("https://chatgpt-au.vulcanlabs.co")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClientBuilder.build())
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideOpenAIService(retrofit: Retrofit): OpenAIService {
-        return retrofit.create(OpenAIService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideMainRemoteService(openAIService: OpenAIService): MainRemoteService {
-        return MainRemoteService(openAIService)
-    }
 
 
     // Cung cấp ApiService

@@ -12,4 +12,5 @@
     <string name="hint_ai_writer_2">Schedule with sender at 8/7/2024.</string>
     <string name="hint_ai_writer_3">Thank you for your information</string>
     <string name="hint_ai_writer_default">Write your idea …</string>
+    <string name="title_dynamicfeature">Module Title</string>
 </resources>

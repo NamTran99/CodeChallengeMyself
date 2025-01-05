@@ -3,6 +3,7 @@ package com.example.myapplication.core.platform.dialog
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

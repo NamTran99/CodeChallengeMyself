@@ -1,4 +1,4 @@
-package com.example.myapplication.data.repositories
+package com.example.myapplication.domain.repository
 
 import com.example.myapplication.data.dto.History
 import com.example.myapplication.data.services.MainRemoteService

@@ -11,10 +11,9 @@ import com.example.myapplication.data.dto.VulanChatRequest
 import com.example.myapplication.data.dto.VulanResponse
 import com.example.myapplication.data.dto.VulanTokenRequest
 import com.example.myapplication.data.dto.VulanTokenResponse
-import com.example.myapplication.data.repositories.MainRepository
+import com.example.myapplication.domain.repository.MainRepository
 import com.example.myapplication.domain.layer.ChatGPTModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 
 class MainRemoteService(val openAIService: OpenAIService) {
     enum class NetWorkType { ARITEK, VULAN, ASKAI }

@@ -1,20 +1,14 @@
 package com.example.myapplication
 
-import android.app.Activity
-import android.content.Context
-import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import umagic.ai.aiart.retrofit.TokenUtils
+import java.util.UUID
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,6 +23,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val supportedAbis = Build.SUPPORTED_ABIS
+        val primaryAbi = supportedAbis.firstOrNull() ?: "Không xác định"
+
+        Log.d("TAG","Các ABI được hỗ trợ: ${supportedAbis.joinToString()}")
+        Log.d("TAG","Kiến trúc chính: $primaryAbi")
+
+        val a = UUID.randomUUID().toString()
+        TokenUtils.initLib()
+        val b = TokenUtils.tokenUtilsInstance?.paramsToken(a)
+        Log.d("TAG", "onResume: NamTD8 ${a} - ${b}")
     }
 
     // unfocus && close keyboard edittext when select outside
