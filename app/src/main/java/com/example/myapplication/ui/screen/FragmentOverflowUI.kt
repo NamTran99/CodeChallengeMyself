@@ -33,6 +33,7 @@ class FragmentOverflowUI : BaseFragment<FragmentOverflowUiBinding>() {
     var mIsEnable = false
 
     private fun a(){
+        mIsEnable = !mIsEnable
         val windowInsets = ViewCompat.getRootWindowInsets(requireActivity().window.decorView)
         val statusBarHeight = windowInsets?.getInsets(WindowInsetsCompat.Type.statusBars())?.top ?: 0
         val navigationBarHeight = windowInsets?.getInsets(WindowInsetsCompat.Type.navigationBars())?.bottom ?: 0
@@ -79,6 +80,9 @@ class FragmentOverflowUI : BaseFragment<FragmentOverflowUiBinding>() {
 
     private fun initView() {
         binding.apply {
+            abc.setOnClickListener {
+                a()
+            }
         }
     }
 
