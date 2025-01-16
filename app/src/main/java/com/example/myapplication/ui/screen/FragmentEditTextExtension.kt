@@ -39,9 +39,9 @@ class FragmentEditTextExtension : BaseFragment<FragmentEditTextExtensionBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            edtTest.formatInputToDecimalPlaces("3",9)
-            removeAllListener()
-            edtTest.formatInputToDecimalPlaces("2",9)
+//            edtTest.formatInputToDecimalPlaces("3",9)
+//            removeAllListener()
+//            edtTest.formatInputToDecimalPlaces("2",9)
         }
     }
 }
