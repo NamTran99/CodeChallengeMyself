@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.view.children
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
+import com.example.mybase.core.platform.BaseFragment
 import com.example.myapplication.databinding.FragmentAiGeneratorBoxBinding
 import com.example.myapplication.databinding.FragmentOnTouchViewBinding
 

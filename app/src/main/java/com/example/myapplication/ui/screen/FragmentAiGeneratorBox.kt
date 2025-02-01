@@ -3,7 +3,7 @@ package com.example.myapplication.ui.screen
 import android.os.Bundle
 import android.view.View
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
+import com.example.mybase.core.platform.BaseFragment
 import com.example.myapplication.databinding.FragmentAiGeneratorBoxBinding
 
 class FragmentAiGeneratorBox : BaseFragment<FragmentAiGeneratorBoxBinding>() {

@@ -6,9 +6,9 @@ import android.view.View
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
 import com.example.myapplication.data.services.MainRemoteService
 import com.example.myapplication.databinding.FragmentOnTouchViewBinding
+import com.example.mybase.core.platform.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
