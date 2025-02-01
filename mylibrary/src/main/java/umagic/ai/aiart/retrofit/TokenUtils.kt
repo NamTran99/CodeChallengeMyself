@@ -2,6 +2,11 @@ package umagic.ai.aiart.retrofit
 
 import android.util.Log
 
+//        val a = UUID.randomUUID().toString()
+//        TokenUtils.initLib()
+//        val b = TokenUtils.tokenUtilsInstance?.paramsToken(a)
+//        Log.d("TAG", "onResume: NamTD8 ${a} - ${b}")
+
 class TokenUtils private constructor() {
     companion object {
         private var isLoadingSuccess: Boolean = false

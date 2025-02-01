@@ -14,7 +14,7 @@
         android:focusable="true"
         android:clickable="true"
         android:focusableInTouchMode="true"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
         <requestFocus />
 
         <ImageView

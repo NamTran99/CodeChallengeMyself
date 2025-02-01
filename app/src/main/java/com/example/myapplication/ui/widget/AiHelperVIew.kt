@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.myapplication.databinding.ViewAiHelperBinding
-import com.example.myapplication.extensions.fadeInFromRight
-import com.example.myapplication.extensions.show
+import com.example.mybase.extensions.fadeInFromRight
+import com.example.mybase.extensions.show
 
 
 interface IAiHelperCallback {

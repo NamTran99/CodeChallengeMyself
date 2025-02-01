@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.myapplication.databinding.LayoutCustomTextSwitcherBinding
-import com.example.myapplication.extensions.setOnSafeClickListener
+import com.example.mybase.extensions.setOnSafeClickListener
 
 class CustomTextSwitcher @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

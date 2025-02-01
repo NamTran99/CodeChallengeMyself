@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "337077836273",
+    "project_id": "codingchallange-bd602",
+    "storage_bucket": "codingchallange-bd602.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337077836273:android:d5e59af0e67d078f98cc50",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA59D36VfZ3nhuAGTE720yWdHe-1XRJhec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

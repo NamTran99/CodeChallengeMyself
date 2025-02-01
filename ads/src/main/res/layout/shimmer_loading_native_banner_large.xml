@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmer_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="110dp">
+
+    <View
+        android:id="@+id/shimmer_adNative_app_icon"
+        android:layout_width="@dimen/ads_icon_size"
+        android:layout_height="@dimen/ads_icon_size"
+        android:layout_marginVertical="@dimen/ads_padding"
+        android:layout_marginStart="20dp"
+        android:background="@color/color_shimmer"
+        app:layout_constraintBottom_toTopOf="@+id/shimmer_nBannerLargeAction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/ads_icon_size"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/color_shimmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shimmer_adNative_app_icon"
+        app:layout_constraintTop_toTopOf="@+id/shimmer_adNative_app_icon" />
+
+    <View
+        android:id="@+id/shimmer_nBannerLargeAction"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ads_button_size"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_shimmer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_adNative_app_icon"
+        tools:layout_editor_absoluteX="4dp" />
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:background="@drawable/bg_text_ads_normal"
+        android:gravity="center"
+        android:minWidth="15dp"
+        android:text="@string/txt_ad"
+        android:textColor="@color/color_white_ads"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

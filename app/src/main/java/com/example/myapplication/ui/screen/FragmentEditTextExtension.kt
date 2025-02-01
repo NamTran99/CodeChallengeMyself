@@ -3,9 +3,9 @@ package com.example.myapplication.ui.screen
 import android.os.Bundle
 import android.view.View
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
+import com.example.mybase.core.platform.BaseFragment
 import com.example.myapplication.databinding.FragmentEditTextExtensionBinding
-import com.example.myapplication.extensions.formatInputToDecimalPlaces
+import com.example.mybase.extensions.formatInputToDecimalPlaces
 import java.lang.reflect.Field
 
 class FragmentEditTextExtension : BaseFragment<FragmentEditTextExtensionBinding>(){

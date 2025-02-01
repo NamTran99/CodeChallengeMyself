@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.ikame.android.sdk.widgets.IkmWALF xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:ignore="MissingDefaultResource,SpUsage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_containerAds"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/custom_app_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="44dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/custom_headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="2"
+            android:textColor="@color/ads_black"
+            android:textSize="22dp"
+            app:layout_constraintBottom_toTopOf="@+id/custom_call_to_action"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/custom_app_icon"
+            app:layout_constraintTop_toTopOf="@+id/custom_app_icon"
+            app:layout_goneMarginStart="@dimen/ads_margin_gone"
+            tools:text="abv" />
+
+        <TextView
+            android:id="@+id/custom_call_to_action"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_btn_ads_round_open"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:textColor="@color/color_white_ads"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_app_icon"
+            app:layout_constraintStart_toStartOf="@+id/custom_headline"
+            app:layout_constraintTop_toBottomOf="@+id/custom_headline"
+            app:layout_constraintWidth_percent="0.5"
+            tools:text="install" />
+
+        <com.ikame.android.sdk.widgets.IkmWidgetMediaView
+            android:id="@+id/custom_media"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="16:10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45"
+            tools:background="@color/ads_black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/custom_media">
+
+
+            <TextView
+                android:id="@+id/custom_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textColor="@color/color_text_ads_des"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/custom_storeDetail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ada\n\n\n\ndad" />
+
+            <LinearLayout
+                android:id="@+id/custom_storeDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/custom_body">
+
+                <TextView
+                    android:id="@+id/custom_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:drawableEnd="@drawable/ikm_ic_star_rate"
+                    android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des"
+                    android:textSize="16dp"
+                    app:drawableEndCompat="@drawable/ikm_ic_star_rate"
+                    tools:text="adadad" />
+
+                <TextView
+                    android:id="@+id/custom_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des"
+                    android:textSize="14dp"
+                    tools:text="adadad" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_containerAdsPor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.ikame.android.sdk.widgets.IkmWidgetMediaView
+            android:id="@+id/custom_mediaPor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/custom_actionContainerPor2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/ads_black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/custom_actionContainerPor2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white_ads"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/custom_call_to_actionPor2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/custom_app_iconPor2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/custom_headlinePor2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/ads_black"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toTopOf="@+id/custom_bodyPor2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/custom_app_iconPor2"
+                    tools:text="abv" />
+
+                <TextView
+                    android:id="@+id/custom_bodyPor2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/custom_ratePor2"
+                    app:layout_constraintEnd_toEndOf="@+id/custom_headlinePor2"
+                    app:layout_constraintStart_toStartOf="@+id/custom_headlinePor2"
+                    tools:text="adadad" />
+
+                <TextView
+                    android:id="@+id/custom_storePor2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/custom_ratePor2"
+                    app:layout_constraintStart_toEndOf="@+id/custom_ratePor2"
+                    app:layout_constraintTop_toTopOf="@+id/custom_ratePor2"
+                    tools:text="adadad" />
+
+                <TextView
+                    android:id="@+id/custom_ratePor2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:drawableEnd="@drawable/ikm_ic_star_rate"
+                    android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/custom_app_iconPor2"
+                    tools:text="adadad" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/custom_call_to_actionPor2"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_btn_ads_round_open"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:textColor="@color/color_white_ads"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintWidth_percent="0.7"
+                tools:text="install" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/custom_actionContainerPor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ikm_bg_inter_nex_transparent"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/custom_detailPor"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.45"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/custom_app_iconPor"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.3"
+                    tools:ignore="ContentDescription" />
+
+                <Space
+                    android:id="@+id/custom_spacePor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/custom_app_iconPor" />
+
+                <TextView
+                    android:id="@+id/custom_headlinePor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:textColor="@color/color_white_ads"
+                    android:textSize="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/custom_spacePor"
+                    app:layout_constraintWidth_percent="0.9"
+                    app:layout_goneMarginStart="@dimen/ads_margin_gone"
+                    tools:text="abv" />
+
+                <Space
+                    android:id="@+id/custom_space2Por"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.06"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/custom_headlinePor" />
+
+                <TextView
+                    android:id="@+id/custom_bodyPor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_ads_des_inter"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/custom_headlinePor"
+                    app:layout_constraintStart_toStartOf="@+id/custom_headlinePor"
+                    app:layout_constraintTop_toBottomOf="@+id/custom_space2Por"
+                    tools:text="adadad" />
+
+                <TextView
+                    android:id="@+id/custom_storePor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des_inter"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/custom_ratePor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/custom_ratePor"
+                    app:layout_constraintTop_toTopOf="@+id/custom_ratePor"
+                    tools:text="adadad" />
+
+                <TextView
+                    android:id="@+id/custom_ratePor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:drawableEnd="@drawable/ikm_ic_star_rate"
+                    android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_text_ads_des_inter"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/custom_storePor"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/custom_bodyPor"
+                    tools:text="adadad" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/custom_call_to_actionPor"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_btn_ads_round_open"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:textColor="@color/color_white_ads"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/custom_detailPor"
+                app:layout_constraintWidth_percent="0.7"
+                tools:text="install" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_containerAdsSquare"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <com.ikame.android.sdk.widgets.IkmWidgetMediaView
+            android:id="@+id/custom_mediaSquare"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08"
+            tools:background="@color/ads_black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/custom_call_to_actionSquare"
+            app:layout_constraintTop_toBottomOf="@+id/custom_mediaSquare"
+            tools:layout_editor_absoluteX="8dp">
+
+            <ImageView
+                android:id="@+id/custom_app_iconSquare"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@+id/custom_bodySquare"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.2"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/custom_headlineSquare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/ads_black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/custom_rateSquare"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/custom_app_iconSquare"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                tools:text="abv" />
+
+            <TextView
+                android:id="@+id/custom_storeSquare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:textColor="@color/color_text_ads_des"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/custom_rateSquare"
+                app:layout_constraintStart_toEndOf="@+id/custom_rateSquare"
+                app:layout_constraintTop_toTopOf="@+id/custom_rateSquare"
+                tools:text="adadad" />
+
+            <TextView
+                android:id="@+id/custom_rateSquare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ikm_ic_star_rate"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:textColor="@color/color_text_ads_des"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/custom_bodySquare"
+                app:layout_constraintStart_toEndOf="@+id/custom_app_iconSquare"
+                tools:text="adadad" />
+
+            <TextView
+                android:id="@+id/custom_bodySquare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:paddingTop="12dp"
+                android:textColor="@color/color_text_ads_des"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/custom_headlineSquare"
+                app:layout_constraintStart_toStartOf="@+id/custom_app_iconSquare"
+                tools:text="adadad" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/custom_call_to_actionSquare"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_btn_ads_round_open"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:textColor="@color/color_white_ads"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintWidth_percent="0.7"
+            tools:text="install" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.ikame.android.sdk.widgets.IkmWALF>

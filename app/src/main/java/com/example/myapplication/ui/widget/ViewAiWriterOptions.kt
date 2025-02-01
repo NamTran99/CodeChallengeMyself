@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.example.myapplication.databinding.ViewAiWriterOptionsBinding
-import com.example.myapplication.extensions.show
+import com.example.mybase.extensions.show
 
 interface IAiWriterOptionsCallback {
     fun onClickRemove(view: ViewAiWriterOptions)

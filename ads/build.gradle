@@ -1,0 +1,66 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
+    id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
+    id 'com.fyber.fairbid-sdk-plugin'
+}
+
+android {
+    namespace 'com.example.ads'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures{
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.multidex
+    implementation(platform(libs.firebase.bom))
+    implementation libs.bundles.firebase.ads
+    implementation libs.adjust.android
+    implementation libs.converter.gson
+    implementation libs.billing
+    implementation libs.glide
+    implementation libs.androidx.room.runtime
+    implementation libs.play.services.measurement.api
+    ksp libs.androidx.room.compiler
+    implementation libs.androidx.room.common
+    implementation libs.androidx.room.ktx
+
+    implementation libs.applovin.sdk
+    implementation libs.play.services.ads
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    implementation libs.androidx.lifecycle.process
+    implementation libs.mediationsdk
+    implementation libs.fairbid.sdk
+}

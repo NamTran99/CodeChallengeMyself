@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -45,9 +46,17 @@ android {
         jvmTarget = "17"
     }
 
-    packagingOptions {
-        resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}") // loại bỏ các giấy phép trong thư viện bên thuws 3 ko thì build lỗi
+        }
     }
+
+//    defaultConfig{
+//        ndk{
+//            abiFilters  += listOf("armeabi-v7a", "arm64-v8a")
+//        }
+//    }
 
     buildFeatures {
         buildConfig = true
@@ -67,6 +76,9 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("com.google.dagger:hilt-android:2.49")
+    implementation(project(":mylibrary"))
+    implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
+    implementation(project(":myBase"))
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
