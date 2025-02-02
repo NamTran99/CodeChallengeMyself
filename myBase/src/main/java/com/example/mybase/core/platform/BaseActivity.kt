@@ -2,10 +2,12 @@ package com.example.mybase.core.platform
 
 import android.content.Context
 import android.graphics.Rect
+import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
@@ -13,6 +15,8 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         val hideKeyboardWhenClickOutSideEditText: Boolean = false
     )
 
+    private lateinit var binding: T
+    abstract val layoutID: Int
     open val activityConfig: ActivityConfigData = ActivityConfigData()
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -30,5 +34,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.inflate(layoutInflater, layoutID, null, false)
+        setContentView(binding.root)
     }
 }

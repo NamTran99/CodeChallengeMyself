@@ -6,28 +6,21 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.mybase.core.platform.BaseActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity(override val layoutID: Int = R.layout.activity_main) :
+    BaseActivity<ActivityMainBinding>() {
     private val CHANNEL_ID = "critical_alert_channel"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_main, null, false)
-        setContentView(binding.root)
-
-
         createNotificationChannel()
-
         // Subscribe to a critical topic (could be customized based on your backend logic)
         FirebaseMessaging.getInstance().subscribeToTopic("critical_incidents")
             .addOnCompleteListener { task ->
@@ -61,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                 enableVibration(true)
                 setBypassDnd(true) // Allow notifications even in Do Not Disturb mode
             }
-            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
