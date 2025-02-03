@@ -141,6 +141,8 @@ class SlideToActView
         /** Duration of vibration after bumping to the end point */
         var bumpVibration: Long = 0L
 
+         val alphaButton: Int get() = (255 - 150 * (1 - mPositionPercInv)).toInt()
+
         @ColorInt
         var textColor: Int = 0
             set(value) {
@@ -190,11 +192,8 @@ class SlideToActView
 
         /** Slider cursor effective position. This is used to handle the `reversed` scenario. */
         private var mEffectivePosition: Int = 0
-            set(value) {
-                field = if (isReversed) (mAreaWidth - mAreaHeight) - value else value
-            }
 
-        /** Positioning of text */
+    /** Positioning of text */
         private var mTextYPosition = -1f
         private var mTextXPosition = -1f
 
@@ -231,16 +230,6 @@ class SlideToActView
         /** Tick drawable, if is an AnimatedVectorDrawable it will be animated */
         private var mDrawableTick: Drawable
         private var mFlagDrawTick: Boolean = false
-
-        @DrawableRes
-        var completeIcon: Int = 0
-            set(value) {
-                field = value
-                if (field != 0) {
-                    mDrawableTick = loadIconCompat(context, value)
-                    invalidate()
-                }
-            }
 
         // -------------------- PAINT & DRAW --------------------
 
@@ -279,18 +268,6 @@ class SlideToActView
 
         /** Public flag to lock the slider */
         var isLocked = false
-
-        /** Public flag to reverse the slider by 180 degree */
-        var isReversed = false
-            set(value) {
-                field = value
-                // We reassign the position field to trigger the re-computation of the effective position.
-                mPosition = mPosition
-                invalidate()
-            }
-
-        /** Public flag to lock the rotation icon */
-        var isRotateIcon = true
 
         /** Public flag to enable complete animation */
         var isAnimateCompletion = true
@@ -393,7 +370,6 @@ class SlideToActView
                     textAppearance = getResourceId(R.styleable.SlideToActView_text_appearance, 0)
 
                     isLocked = getBoolean(R.styleable.SlideToActView_slider_locked, false)
-                    isReversed = getBoolean(R.styleable.SlideToActView_slider_reversed, false)
                     isAnimateCompletion =
                         getBoolean(
                             R.styleable.SlideToActView_animate_completion,
@@ -582,8 +558,6 @@ class SlideToActView
 
         override fun onDraw(canvas: Canvas) {
             super.onDraw(canvas)
-            Log.d(TAG, "onDraw: NamTD8")
-
             // Outer area
             mOuterRect.set(
                 mActualAreaWidth.toFloat(),
@@ -597,11 +571,8 @@ class SlideToActView
                 mBorderRadius.toFloat(),
                 mOuterPaint,
             )
-            Log.d(TAG, "onDraw- NamTD8: $mPositionPercInv")
-            mOuterPaint.alpha = (255 - 150 * (1 - mPositionPercInv)).toInt()
-
-            // Text alpha
-            mTextPaint.alpha = (255 * mPositionPercInv).toInt()
+            mOuterPaint.alpha = alphaButton
+            mTextPaint.alpha = alphaButton
             // Checking if the TextView has a Transformation method applied (e.g. AllCaps).
             val textToDraw = mTextView.transformationMethod?.getTransformation(text, mTextView) ?: text
             canvas.drawText(
@@ -631,14 +602,7 @@ class SlideToActView
 
             // Arrow angle
             // We compute the rotation of the arrow and we apply .rotate transformation on the canvas.
-            canvas.save()
-            if (isReversed) {
-                canvas.scale(-1F, 1F, mInnerRect.centerX(), mInnerRect.centerY())
-            }
-            if (isRotateIcon) {
-                mArrowAngle = -180 * mPositionPerc
-                canvas.rotate(mArrowAngle, mInnerRect.centerX(), mInnerRect.centerY())
-            }
+//            canvas.save()
             mDrawableArrow.setBounds(
                 mInnerRect.left.toInt() + mArrowMargin,
                 mInnerRect.top.toInt() + mArrowMargin,
@@ -650,7 +614,7 @@ class SlideToActView
             ) {
                 mDrawableArrow.draw(canvas)
             }
-            canvas.restore()
+//            canvas.restore()
 
             // Tick drawing
             mDrawableTick.setBounds(
@@ -762,12 +726,7 @@ class SlideToActView
          * @param inc Increment to be performed (negative if it's a decrement)
          */
         private fun increasePosition(inc: Int) {
-            mPosition =
-                if (isReversed) {
-                    mPosition - inc
-                } else {
-                    mPosition + inc
-                }
+            mPosition += inc
             if (mPosition < 0) {
                 mPosition = 0
             }

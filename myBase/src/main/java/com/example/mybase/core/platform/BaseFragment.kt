@@ -28,7 +28,7 @@ abstract class BaseFragment<T: ViewDataBinding>: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume: NamTD8 ${this::class.simpleName}")
+        Log.d(TAG, "namescreen: NamTD8 ${this::class.simpleName}")
     }
 
     override fun onCreateView(
