@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.myapplication.R
-import com.example.myapplication.data.services.MainRemoteService
 import com.example.myapplication.databinding.FragmentTestViewButtonSlideBinding
 import com.example.mybase.core.platform.BaseFragment
 import com.permissionx.guolindev.PermissionX
@@ -18,8 +17,6 @@ class FragmentCheckPermission : BaseFragment<FragmentTestViewButtonSlideBinding>
     override val layoutId: Int
         get() = R.layout.fragment_test_view_button_slide
 
-    @Inject
-    lateinit var mainRemoteService: MainRemoteService
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

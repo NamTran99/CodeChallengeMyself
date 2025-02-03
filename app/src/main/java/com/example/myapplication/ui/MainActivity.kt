@@ -6,20 +6,35 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.mybase.core.platform.BaseActivity
+import com.example.mybase.core.platform.storage.BaseDataStore
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+data class Person(val name: String)
 
 @AndroidEntryPoint
 class MainActivity(override val layoutID: Int = R.layout.activity_main) :
     BaseActivity<ActivityMainBinding>() {
     private val CHANNEL_ID = "critical_alert_channel"
-
+    val data by lazy {
+        BaseDataStore(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        data.saveData("2",Person("name"))
+        lifecycleScope.launch {
+            delay(1000)
+            data.getData<Person>("2").collect{
+                Log.d("TAG", "onCreate: NamTD8 $it")
+            }
+        }
         createNotificationChannel()
         // Subscribe to a critical topic (could be customized based on your backend logic)
         FirebaseMessaging.getInstance().subscribeToTopic("critical_incidents")
@@ -60,4 +75,3 @@ class MainActivity(override val layoutID: Int = R.layout.activity_main) :
         }
     }
 }
-

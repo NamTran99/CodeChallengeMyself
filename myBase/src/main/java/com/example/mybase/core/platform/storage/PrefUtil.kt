@@ -1,8 +1,7 @@
-package com.example.myapplication.local
+package com.example.mybase.core.platform.storage
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.myapplication.app.MyApplication
 
 class PrefUtil(context: Context) {
 
@@ -10,7 +9,7 @@ class PrefUtil(context: Context) {
         const val PREF_NAME = "PREF_NAME"
         private var mPrefUtils: PrefUtil? = null
 
-        fun getInstance(context: Context = MyApplication.appContext): PrefUtil {
+        fun getInstance(context: Context): PrefUtil {
             return mPrefUtils ?: PrefUtil(context)
         }
     }
