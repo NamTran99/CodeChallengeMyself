@@ -2,17 +2,11 @@ package com.example.myapplication.service
 
 import android.Manifest
 import android.app.Notification
-import android.app.Notification.CATEGORY_ALARM
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.provider.Settings
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.myapplication.R
@@ -30,6 +24,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         // Handle FCM messages here.
+        Log.d("TAG", "onMessageReceived: NamTD8")
         remoteMessage.notification?.let {
             Log.d("FCM", "Message Notification Title: ${it.title}")
             Log.d("FCM", "Message Notification Body: ${it.body}")
@@ -46,6 +41,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setDefaults(NotificationCompat.DEFAULT_SOUND)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setCategory(Notification.CATEGORY_MESSAGE)
+            .addAction(
+                R.drawable.ic_icon_app,
+                "aaa",
+                null
+            )
             .setAutoCancel(true)
 
         val notificationManager = NotificationManagerCompat.from(this)
@@ -56,38 +56,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         ) {
             return
         }
-        notificationManager.notify(0, notificationBuilder.build())
+        notificationManager.notify(0, notificationBuilder.build().apply {
+//            flags = Notification.FLAG_INSISTENT or flags // tiếng kêu liên tục
+        })
 
-        // Tạo WindowManager và cửa sổ nổi
-        windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
-
-        // Inflate layout cho cửa sổ nổi
-        floatingView = LayoutInflater.from(this).inflate(R.layout.floating_view_layout, null) as TextView
-
-        // Cấu hình cửa sổ nổi
-        val params = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY, // Required for overlay permission
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-            android.graphics.PixelFormat.TRANSLUCENT
-        )
-
-        // Vị trí của cửa sổ nổi
-        params.gravity = Gravity.TOP or Gravity.END
-        params.x = 100
-        params.y = 100
-
-        // Thêm cửa sổ nổi vào window manager
-        windowManager.addView(floatingView, params)
-
-        // Thêm nội dung cho cửa sổ nổi
-        floatingView.text = "This is a floating pop-up notification"
-
-        if (!Settings.canDrawOverlays(this)) {
-            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-            startActivity(intent)
-        }
     }
 
     override fun onNewToken(token: String) {

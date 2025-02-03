@@ -21,7 +21,7 @@ import java.io.IOException
 
 private val Context.dataStore by preferencesDataStore("app_preferences")
 
-class BaseDataStore(private val context: Context) {
+class DataStoreProcessor(private val context: Context) {
 
     val dataStore = context.dataStore
 

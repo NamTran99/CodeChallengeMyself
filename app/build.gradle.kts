@@ -76,7 +76,7 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("com.google.dagger:hilt-android:2.49")
-    implementation(project(":mylibrary"))
+//    implementation(project(":mylibrary"))
     implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
     implementation(project(":myBase"))
     kapt("com.google.dagger:hilt-android-compiler:2.48")

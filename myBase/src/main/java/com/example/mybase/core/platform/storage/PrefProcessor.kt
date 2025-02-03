@@ -3,14 +3,14 @@ package com.example.mybase.core.platform.storage
 import android.content.Context
 import android.content.SharedPreferences
 
-class PrefUtil(context: Context) {
+class PrefProcessor(context: Context) {
 
     companion object {
         const val PREF_NAME = "PREF_NAME"
-        private var mPrefUtils: PrefUtil? = null
+        private var mPrefUtils: PrefProcessor? = null
 
-        fun getInstance(context: Context): PrefUtil {
-            return mPrefUtils ?: PrefUtil(context)
+        fun getInstance(context: Context): PrefProcessor {
+            return mPrefUtils ?: PrefProcessor(context)
         }
     }
 
