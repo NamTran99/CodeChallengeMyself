@@ -1,14 +1,15 @@
-package com.example.mybase.core.recyclerview
+package com.tdt.pmobile3.ewallet.base.recyclerview.adapter
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.core.recyclerview.KeyCallbackItem
-import com.example.myapplication.core.recyclerview.KeyModel
-import com.example.mybase.extensions.inflateBinding
+import com.tdt.pmobile3.ewallet.base.recyclerview.core.KeyCallbackItem
+import com.tdt.pmobile3.ewallet.base.recyclerview.core.KeyModel
+import com.tdt.pmobile3.ewallet.utils.inflateBinding
 import kotlin.reflect.KClass
+
 
 open class MultipleViewHolderAdapter(
     private val holderList: ViewHolderList,
@@ -33,6 +34,7 @@ open class MultipleViewHolderAdapter(
         holder.bind(getItem(position), position)
     }
 
+
     override fun onBindViewHolder(
         holder: TypeItemHolder<out KeyModel, out ViewDataBinding>.DataViewHolder,
         position: Int,
@@ -42,12 +44,16 @@ open class MultipleViewHolderAdapter(
             super.onBindViewHolder(holder, position, payloads)
         }
     }
-
 }
 
 class ViewHolderList(
-    private val typeList: List<TypeItemHolder<out KeyModel, out ViewDataBinding>>,
+    val typeList: List<TypeItemHolder<out KeyModel, out ViewDataBinding>>,
 ) {
+
+     inline fun <reified TYPE: TypeItemHolder<*, *>> getViewHolderType(): TYPE? {
+        return typeList.find { it is TYPE } as? TYPE
+    }
+
     fun getViewHolderTypeWithItem(item: KeyModel): Int {
         typeList.forEachIndexed { index, typeViewHolder ->
             if (typeViewHolder.checkModel(item)) {
@@ -70,7 +76,6 @@ abstract class TypeItemHolder<MODEL : KeyModel, BINDING : ViewDataBinding>(
     private val model: KClass<out KeyModel>,
     @LayoutRes val layoutRes: Int,
 ) {
-    lateinit var mBinding: BINDING
     abstract fun onBindView(binding: BINDING, model: MODEL, position: Int)
     open fun onBindHandlePayload(binding: BINDING, model: MODEL, position: Int, payloads: MutableList<Any>): Boolean{
         return false
@@ -81,16 +86,14 @@ abstract class TypeItemHolder<MODEL : KeyModel, BINDING : ViewDataBinding>(
     }
 
     fun getViewHolder(parent: ViewGroup): DataViewHolder {
-        return DataViewHolder(parent.inflateBinding(layoutRes)).apply {
-            mBinding = binding
-        }
+        return DataViewHolder(parent.inflateBinding(layoutRes))
     }
 
     @Suppress("UNCHECKED_CAST")
     inner class DataViewHolder(
         val binding: BINDING,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: KeyModel, position: Int) {
+         fun bind(item: KeyModel, position: Int) {
             onBindView(binding, item as MODEL, position)
         }
 

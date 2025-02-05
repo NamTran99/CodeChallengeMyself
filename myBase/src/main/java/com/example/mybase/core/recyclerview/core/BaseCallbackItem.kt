@@ -1,4 +1,4 @@
-package com.example.myapplication.core.recyclerview
+package com.tdt.pmobile3.ewallet.base.recyclerview.core
 
 import androidx.recyclerview.widget.DiffUtil
 
