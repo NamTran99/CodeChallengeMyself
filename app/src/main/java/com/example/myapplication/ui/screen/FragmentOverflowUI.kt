@@ -45,23 +45,27 @@ class FragmentOverflowUI : BaseFragment<FragmentOverflowUiBinding>() {
 //                    lvLayout.fitsSystemWindows =true
                     WindowCompat.setDecorFitsSystemWindows(window, true)
                     Log.d("TAG", "a: NamTD8")
-
-                    view!!.setPadding(
-                        view!!.paddingLeft,
+                    appBar!!.setPadding(
+                        appBar!!.paddingLeft,
                         0,
-                        view!!.paddingRight,
+                        appBar!!.paddingRight,
                        0
                     )
                 } else {
                     window.statusBarColor = Color.TRANSPARENT
                     WindowCompat.setDecorFitsSystemWindows(window, false)
                     Log.d("TAG", "a: NamTD88")
-
+                    appBar!!.setPadding(
+                        appBar!!.paddingLeft,
+                        statusBarHeight,
+                        appBar!!.paddingRight,
+                        0
+                    )
                     ViewCompat.setOnApplyWindowInsetsListener(view!!) { v, insets ->
                         val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                         v.setPadding(
                             v.paddingLeft,
-                            systemBarsInsets.top,  // Add top padding for the status bar
+                            0,  // Add top padding for the status bar
                             v.paddingRight,
                             systemBarsInsets.bottom  // Add bottom padding for the navigation bar
                         )
