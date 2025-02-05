@@ -39,11 +39,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.core.widget.TextViewCompat
 import com.example.myapplication.R
-import com.example.myapplication.extensions.createIconAnimator
-import com.example.myapplication.extensions.loadIconCompat
-import com.example.myapplication.extensions.startIconAnimation
-import com.example.myapplication.extensions.stopIconAnimation
-import com.example.myapplication.extensions.tintIconCompat
+import com.example.myapplication.extenstion.createIconAnimator
+import com.example.myapplication.extenstion.loadIconCompat
+import com.example.myapplication.extenstion.startIconAnimation
+import com.example.myapplication.extenstion.stopIconAnimation
+import com.example.myapplication.extenstion.tintIconCompat
 
 /**
  *  Class representing the custom view, SlideToActView.

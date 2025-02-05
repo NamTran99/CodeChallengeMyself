@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.example.myapplication.R
-import com.example.myapplication.extensions.loadAttrs
+import com.example.mybase.extensions.loadAttrs
 
 
 class ConstrainStrokeLinearBg(context: Context, attributeSet: AttributeSet) :

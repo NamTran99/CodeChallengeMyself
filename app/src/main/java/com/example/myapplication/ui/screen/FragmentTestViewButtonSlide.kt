@@ -6,8 +6,7 @@ import android.view.View
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
-import com.example.myapplication.data.services.MainRemoteService
+import com.example.mybase.core.platform.BaseFragment
 import com.example.myapplication.databinding.FragmentTestViewButtonSlideBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -18,14 +17,10 @@ class FragmentTestViewButtonSlide : BaseFragment<FragmentTestViewButtonSlideBind
     override val layoutId: Int
         get() = R.layout.fragment_test_view_button_slide
 
-    @Inject
-    lateinit var mainRemoteService: MainRemoteService
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
-            val a = mainRemoteService.getToken()
-//            Log.d("TAG", "onViewCreated NamTD8: $a")
         }
         initView()
     }

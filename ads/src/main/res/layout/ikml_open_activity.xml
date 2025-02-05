@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/openAdContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ikm_bg_transparent"
+    tools:ignore="MissingDefaultResource,SpUsage">
+
+
+    <View
+        android:id="@+id/openAd_bgView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_ads_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <com.ikame.android.sdk.widgets.IkmWidgetAdView-->
+<!--        android:id="@+id/openAd_containerAds"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:elevation="4dp"-->
+<!--        android:background="@color/color_ads_bg"-->
+<!--        app:ikwad_preview_layout="@layout/layout_native_full"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/openAd_bgView" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/openAd_loadingAds"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_ads_round"
+        android:elevation="4dp"
+        android:paddingVertical="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="gone">
+
+<!--        <com.ikame.android.sdk.widgets.CommonCircleLoading-->
+<!--            android:id="@+id/openAd_loadingAdsView"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.35" />-->
+
+        <TextView
+            android:id="@+id/openAd_loadingAdsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:text="@string/txt_ad_loading"
+            android:textColor="@color/ads_black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+         />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_close_container"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_btn_ads_round_open_left"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/openAd_bgView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.75">
+
+        <TextView
+            android:id="@+id/custom_close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/ads_button_size"
+            android:layout_alignParentEnd="true"
+            android:drawableEnd="@drawable/ikm_ic_next_24"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:text="Continue to App"
+            android:textColor="#888"
+            android:textSize="10dp"
+            android:visibility="gone"
+            app:drawableEndCompat="@drawable/ikm_ic_next_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <com.ikame.android.sdk.widgets.CommonCircleLoading-->
+<!--            android:id="@+id/custom_adsLoadingView"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.4" />-->
+
+        <TextView
+            android:id="@+id/custom_appText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/ads_black"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/custom_close_btn"
+            app:layout_constraintStart_toEndOf="@+id/custom_appIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="hjasdjhasjk" />
+
+        <ImageView
+            android:id="@+id/custom_appIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_update_app_dialog" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/openAd_txtAd"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_text_ads_grey_r10"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:text="Advertisement"
+        android:textColor="@color/color_white_ads"
+        android:textSize="10dp"
+        android:translationZ="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/openAd_bgView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

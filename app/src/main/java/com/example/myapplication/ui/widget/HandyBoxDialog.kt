@@ -9,8 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
 import com.example.myapplication.databinding.HandyDialogCreateAccountBinding
-import com.example.myapplication.extensions.setOnSafeClickListener
-import com.example.myapplication.extensions.show
+import com.example.mybase.extensions.setOnSafeClickListener
+import com.example.mybase.extensions.show
 
 
 enum class HandyBoxStatus{

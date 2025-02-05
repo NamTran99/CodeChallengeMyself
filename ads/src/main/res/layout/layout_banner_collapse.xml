@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bannerAdCollapseTop_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        android:src="@drawable/ic_close_collapse_bottom"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/bannerAdCollapse_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ads_bg"
+        android:gravity="center"
+        android:orientation="vertical" />
+
+    <ImageView
+        android:id="@+id/bannerAdCollapseBottom_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bannerAdCollapse_container"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        android:src="@drawable/ic_close_collapse_top"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</LinearLayout>

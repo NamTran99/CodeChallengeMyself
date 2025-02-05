@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "CodingChallage"
 include ':app'
 include ':mylibrary'
+include ':myBase'

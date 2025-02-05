@@ -9,10 +9,10 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.myapplication.R
 import com.example.myapplication.databinding.AiGeneratorBoxBinding
-import com.example.myapplication.extensions.fadeInFromRight
-import com.example.myapplication.extensions.hide
-import com.example.myapplication.extensions.show
-import com.example.myapplication.extensions.toggleImage
+import com.example.mybase.extensions.fadeInFromRight
+import com.example.mybase.extensions.hide
+import com.example.mybase.extensions.show
+import com.example.mybase.extensions.toggleImage
 
 
 sealed interface AIGeneratorStatus {

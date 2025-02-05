@@ -9,11 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/abc"
-            android:name="com.example.myapplication.ui.screen.FragmentOverflowUI"
+            android:name="com.example.myapplication.ui.screen.FragmentCheckPermission"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

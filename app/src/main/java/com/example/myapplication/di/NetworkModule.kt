@@ -2,7 +2,6 @@ package com.example.myapplication.di
 
 import app.swiftmail.data.helper.interceptor.CurlLoggerInterceptor
 import com.example.myapplication.data.api.OpenAIService
-import com.example.myapplication.data.services.MainRemoteService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,13 +45,6 @@ object NetworkModule {
     fun provideOpenAIService(retrofit: Retrofit): OpenAIService {
         return retrofit.create(OpenAIService::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideMainRemoteService(openAIService: OpenAIService): MainRemoteService {
-        return MainRemoteService(openAIService)
-    }
-
 
     // Cung cấp ApiService
     //    @Provides

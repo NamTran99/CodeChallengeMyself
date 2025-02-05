@@ -2,7 +2,6 @@ package com.example.myapplication.di
 
 import app.swiftmail.data.helper.interceptor.CurlLoggerInterceptor
 import com.example.myapplication.data.api.OpenAIService
-import com.example.myapplication.data.services.MainRemoteService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

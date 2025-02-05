@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.example.myapplication.extensions.CallBackNoParam
+import com.example.mybase.extensions.CallBackNoParam
 
 class Typewriter : AppCompatTextView {
     var isDoneAnimate  = true
