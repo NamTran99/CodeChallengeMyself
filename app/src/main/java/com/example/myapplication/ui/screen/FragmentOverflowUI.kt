@@ -10,13 +10,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
-import com.example.myapplication.data.services.MainRemoteService
 import com.example.myapplication.databinding.FragmentOverflowUiBinding
-import com.example.myapplication.databinding.FragmentTestUiBinding
-import com.example.myapplication.extensions.formatInputToDecimalPlaces
+import com.example.mybase.core.platform.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentOverflowUI : BaseFragment<FragmentOverflowUiBinding>() {

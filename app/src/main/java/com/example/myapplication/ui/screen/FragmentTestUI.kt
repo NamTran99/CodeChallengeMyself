@@ -4,20 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.example.myapplication.R
-import com.example.myapplication.core.platform.BaseFragment
-import com.example.myapplication.data.services.MainRemoteService
 import com.example.myapplication.databinding.FragmentTestUiBinding
-import com.example.myapplication.extensions.formatInputToDecimalPlaces
+import com.example.mybase.core.platform.BaseFragment
+import com.example.mybase.extensions.formatInputToDecimalPlaces
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentTestUI : BaseFragment<FragmentTestUiBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_test_ui
-
-    @Inject
-    lateinit var mainRemoteService: MainRemoteService
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

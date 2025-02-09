@@ -2,7 +2,6 @@ package com.example.mybase.core.platform.storage
 
 import android.content.Context
 import android.util.Log
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
@@ -27,19 +26,16 @@ class DataStoreProcessor(private val context: Context) {
 
     // Save any supported type to DataStore
     inline fun <reified T> saveData(key: String, value: T) {
-        val preferencesKey = getPreferencesKey<T>(key)
-        Log.d("TAG", "saveData: NamTD8-2 ${Gson().toJson(value)} - ${value}")
         scopeSupervisorIO.launchWithSupervisorJob {
             dataStore.edit { preferences ->
                 when (value) {
-                    is String -> preferences[preferencesKey as Preferences.Key<String>] = value
-                    is Int -> preferences[preferencesKey as Preferences.Key<Int>] = value
-                    is Boolean -> preferences[preferencesKey as Preferences.Key<Boolean>] = value
-                    is Float -> preferences[preferencesKey as Preferences.Key<Float>] = value
-                    is Long -> preferences[preferencesKey as Preferences.Key<Long>] = value
+                    is String -> preferences[stringPreferencesKey(key)] = value
+                    is Int -> preferences[intPreferencesKey(key)] = value
+                    is Boolean -> preferences[booleanPreferencesKey(key)] = value
+                    is Float -> preferences[floatPreferencesKey(key)] = value
+                    is Long -> preferences[longPreferencesKey(key)] = value
                     else -> {
-                        Log.d("TAG", "saveData: NamTD8-3 ${preferencesKey as Preferences.Key<String>}")
-                        preferences[preferencesKey as Preferences.Key<String>] = Gson().toJson(value)
+                        preferences[stringPreferencesKey(key)] = Gson().toJson(value)
                     }
                 }
             }
@@ -47,10 +43,7 @@ class DataStoreProcessor(private val context: Context) {
     }
 
     // Read any supported type from DataStore
-    inline fun <reified T> getData(key: String, defaultValue: T?= null): Flow<T?> {
-        Log.d("TAG", "getData: NamTD8-3")
-        val preferencesKey = getPreferencesKey<T>(key)
-        Log.d("TAG", "getData: NamTD8-2")
+    inline fun <reified T> getData(key: String, defaultValue: T? = null): Flow<T?> {
         return dataStore.data
             .catch { exception ->
                 if (exception is IOException) {
@@ -62,12 +55,12 @@ class DataStoreProcessor(private val context: Context) {
             .map { preferences ->
                 Log.d("TAG", "getData: NamTD8-4")
                 when (T::class) {
-                    String::class -> preferences[preferencesKey as Preferences.Key<String>] ?: defaultValue
-                    Int::class-> preferences[preferencesKey as Preferences.Key<Int>] ?: defaultValue
-                    Boolean::class-> preferences[preferencesKey as Preferences.Key<Boolean>] ?: defaultValue
-                    Float::class  -> preferences[preferencesKey as Preferences.Key<Float>] ?: defaultValue
-                    Long::class -> preferences[preferencesKey as Preferences.Key<Long>] ?: defaultValue
-                    else -> preferences[preferencesKey as Preferences.Key<String>]?.let {
+                    String::class -> preferences[stringPreferencesKey(key)] ?: defaultValue
+                    Int::class -> preferences[intPreferencesKey(key)] ?: defaultValue
+                    Boolean::class -> preferences[booleanPreferencesKey(key)] ?: defaultValue
+                    Float::class -> preferences[floatPreferencesKey(key)] ?: defaultValue
+                    Long::class -> preferences[longPreferencesKey(key)] ?: defaultValue
+                    else -> preferences[stringPreferencesKey(key)]?.let {
                         try {
                             Gson().fromJson(it, T::class.java)
                         } catch (e: Exception) {
@@ -84,15 +77,4 @@ class DataStoreProcessor(private val context: Context) {
         dataStore.edit { it.clear() }
     }
 
-    // Helper to get the Preferences.Key based on type
-    inline fun <reified T> getPreferencesKey(key: String): Preferences.Key<T> {
-        return when (T::class) {
-            String::class -> stringPreferencesKey(key)
-            Int::class -> intPreferencesKey(key)
-            Boolean::class -> booleanPreferencesKey(key)
-            Float::class -> floatPreferencesKey(key)
-            Long::class -> longPreferencesKey(key)
-            else -> stringPreferencesKey(key)
-        } as Preferences.Key<T>
-    }
 }
