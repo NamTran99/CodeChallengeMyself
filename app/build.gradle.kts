@@ -76,7 +76,6 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("com.google.dagger:hilt-android:2.49")
-//    implementation(project(":mylibrary"))
     implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
     implementation(project(":myBase"))
     kapt("com.google.dagger:hilt-android-compiler:2.48")
@@ -87,7 +86,5 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     implementation("com.guolindev.permissionx:permissionx:1.8.1")
-//    releaseImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
-//    debugImplementation(files("libs/ads-sdk-6.1.0.6.aar"))
-//    implementation(files("libs/ads-sdk-6.1.0.6.aar"))
+    implementation("io.socket:socket.io-client:2.1.0")
 }

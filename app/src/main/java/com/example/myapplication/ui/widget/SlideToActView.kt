@@ -506,7 +506,6 @@ class SlideToActView
             widthMeasureSpec: Int,
             heightMeasureSpec: Int,
         ) {
-            Log.d(TAG, "onMeasure: NamTD8")
             val widthMode = MeasureSpec.getMode(widthMeasureSpec)
             val widthSize = MeasureSpec.getSize(widthMeasureSpec)
 
@@ -536,7 +535,6 @@ class SlideToActView
             oldw: Int,
             oldh: Int,
         ) {
-            Log.d(TAG, "onSizeChanged: NamTD8")
             mAreaWidth = w
             mAreaHeight = h
             if (mBorderRadius == -1) {

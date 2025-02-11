@@ -3,6 +3,7 @@ package com.example.mybase.core.platform
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -40,5 +41,10 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.inflate(layoutInflater, layoutID, null, false)
         setContentView(binding.root)
+    }
+
+    override fun onResume() {
+        Log.d("TAG", "namescreen-activity: NamTD8 ${this::class.simpleName}")
+        super.onResume()
     }
 }
