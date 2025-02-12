@@ -1,5 +1,6 @@
 package com.example.mybase.extensions
 
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,5 +17,14 @@ fun CoroutineScope.launchWithSupervisorJob(
     }
 }
 
+inline fun <reified T> Any.fromJson(json: String): T? {
+    try {
+        Gson().fromJson(json, T::class.java)
+    }catch (e: Exception){
+        return null
+    }
+}
+
 val scopeSupervisorIO = CoroutineScope(Dispatchers.IO + SupervisorJob())
 val scopeSupervisorMain = CoroutineScope(Dispatchers.Main + SupervisorJob())
+

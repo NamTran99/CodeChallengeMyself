@@ -1,67 +1,173 @@
 package com.example.myapplication.service.socket
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import io.socket.client.IO
-import io.socket.client.Socket
-import org.json.JSONArray
-import org.json.JSONObject
-import java.net.URISyntaxException
+import com.example.myapplication.service.socket.SocketHelper.generateWebSocketKey
+import com.example.myapplication.service.socket.SocketHelper.getLanguage
+import com.example.myapplication.service.socket.SocketMessageCodes.SUCCESS_HANDSHAKE
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
+import okio.ByteString
+import java.util.concurrent.ConcurrentHashMap
+import java.util.regex.Pattern
 
-class SocketManager {
+object SocketManager {
 
-    private lateinit var socket: Socket
+    private val client = OkHttpClient()
+    private val TAG = "PerplexityWebSocketClient"
+    private val headerBuilder = HashMap<String, String>()
+    private const val URL_SOCKET = "wss://www.perplexity.ai/socket.io/?EIO=4&transport=websocket"
+    private var dataRemoteConfig = SocketRemoteConfig()
+    private var pingInterval: Long = 25000
+    private var pingTimeout: Long = 20000
 
-    fun getSocket(): Socket  = socket
 
-    fun connectSocket() {
-        try {
-            val options = IO.Options().apply {
-                transports = arrayOf("websocket", "polling")
-                reconnection = true // Tự động kết nối lại
-                timeout = 5000      // Timeout sau 5 giây
+    init {
+        fetchRemoteServer()
+        initHeader()
+    }
+
+    private fun fetchRemoteServer(data: SocketRemoteConfig = SocketRemoteConfig()) {
+        dataRemoteConfig = data
+
+        headerBuilder["X-App-ApiVersion"] = dataRemoteConfig.apiVersion
+        headerBuilder["X-App-Version"] = dataRemoteConfig.appVersion
+        headerBuilder["X-Client-Version"] = dataRemoteConfig.clientVersion
+    }
+
+    private fun initHeader() {
+        headerBuilder["Accept-Encoding"] = "gzip"
+        headerBuilder["Accept-Language"] = getLanguage()
+        headerBuilder["Connection"] = "Upgrade"
+        headerBuilder["Host"] = "www.perplexity.ai"
+        headerBuilder["Sec-WebSocket-Version"] = "13"
+        headerBuilder["Upgrade"] = "websocket"
+        headerBuilder["X-App-ApiClient"] = "android"
+        headerBuilder["X-Client-Env"] = "prod"
+        headerBuilder["X-Client-Name"] = "Perplexity-Android"
+        headerBuilder["Sec-WebSocket-Accept"] = generateWebSocketKey()
+    }
+
+    fun connect() {
+        val request = Request.Builder()
+            .url(URL_SOCKET).apply {
+                headerBuilder.forEach { (key, value) ->
+                    header(key, value)
+                }
+            }.build()
+
+        val webSocketListener = object : WebSocketListener() {
+            override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
+                Log.d(TAG, "onOpen: ")
+                webSocket.send(SUCCESS_HANDSHAKE) // xác nhan ket noi
+
+                val message = """420["perplexity_ask","How much are Stradivarius violins?",{
+                    "source":"android",
+                    "version":"2.15",
+                    "frontend_uuid":"2841bbb3-72f1-4078-b246-947e1de750f9",
+                    "use_inhouse_model":false,
+                    "android_device_id":"9c94edee38ee7427",
+                    "mode":"concise",
+                    "search_focus":"internet",
+                    "is_related_query":false,
+                    "is_voice_to_voice":false,
+                    "timezone":"Asia/Bangkok",
+                    "language":"vi-VN",
+                    "query_source":"helper",
+                    "is_incognito":false
+                }]"""
+                webSocket.send(message)
             }
 
-            // Thay URL của server vào đây
-            socket = IO.socket("wss://www.perplexity.ai/socket.io",options)
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                Log.d(TAG, "onMessage: $text")
+                when {
+                    text.startsWith(SUCCESS_HANDSHAKE) ->{
 
-            socket.on(Socket.EVENT_CONNECT) {
-                Log.d("TAG", "connectSocket: NamTD8")
-            }
-
-            // Lắng nghe khi socket ngắt kết nối
-            socket.on(Socket.EVENT_DISCONNECT) {
-                Log.d("TAG", "EVENT_DISCONNECT: NamTD8")
-            }
-
-            // Lắng nghe lỗi khi kết nối
-            socket.on(Socket.EVENT_CONNECT_ERROR) { args ->
-                Log.d("TAG", "EVENT_CONNECT_ERROR: NamTD8 - ${args.map { it.toString() }}")
-            }
-
-
-            socket.on("your_event_name") { args ->
-                if (args.isNotEmpty()) {
-                    val data = args[0] as JSONObject
-                    println("Received data: $data")
+                    }
                 }
             }
 
-            socket.connect()
-        } catch (e: URISyntaxException) {
-            Log.d("TAG", "connectSocket: NamTD8 ${e.message}")
-            e.printStackTrace()
+            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+                Log.d(TAG, "Received ByteString: ${bytes.hex()}")
+            }
+
+            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+                Log.d(TAG, "Received ByteString: $reason}")
+                webSocket.close(1000, null)
+            }
+
+            override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                Log.d(TAG, "WebSocket Closed: $reason")
+            }
+
+            override fun onFailure(
+                webSocket: WebSocket,
+                t: Throwable,
+                response: okhttp3.Response?
+            ) {
+                Log.d(TAG, "WebSocket Error: ${t.message}")
+            }
+        }
+
+        client.newWebSocket(request, webSocketListener)
+        client.dispatcher.executorService.shutdown()
+    }
+
+    private fun schedulePing(webSocket: WebSocket) {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                if (client.connectionPool.connectionCount() > 0) {
+                    Log.d(TAG, "Sending ping")
+                    webSocket.send("2")
+                    handler.postDelayed(this, pingInterval)
+                }
+            }
+        }, pingInterval)
+    }
+}
+
+
+// Define the CookieJar interface, similar to InterfaceC4265p
+interface CookieJar {
+    fun saveCookies(url: String, cookies: List<String>)
+    fun loadCookies(url: String): List<String>
+}
+
+class SimpleCookieJar : CookieJar {
+
+    // Store cookies per domain in a thread-safe map
+    private val cookieStore: ConcurrentHashMap<String, MutableList<String>> = ConcurrentHashMap()
+
+    override fun saveCookies(url: String, cookies: List<String>) {
+        val domain = extractDomain(url)
+        if (domain != null) {
+            val existingCookies = cookieStore.getOrPut(domain) { mutableListOf() }
+            cookies.forEach { cookie ->
+                if (!existingCookies.contains(cookie)) {
+                    existingCookies.add(cookie)
+                }
+            }
         }
     }
 
-    fun sendMessage(event: String, data: JSONObject) {
-        socket.emit(event, data)
+    override fun loadCookies(url: String): List<String> {
+        val domain = extractDomain(url)
+        return if (domain != null) {
+            cookieStore[domain]?.toList() ?: emptyList()
+        } else {
+            emptyList()
+        }
     }
 
-    fun sendMessage(event: String, data: JSONArray) {
-        socket.emit(event, data)
-    }
-
-    fun disconnectSocket() {
-        socket.disconnect()
+    // Extracts the domain from the given URL
+    private fun extractDomain(url: String): String? {
+        val pattern = Pattern.compile("^(?:https?://)?(?:www\\.)?([^/]+)")
+        val matcher = pattern.matcher(url)
+        return if (matcher.find()) matcher.group(1) else null
     }
 }
