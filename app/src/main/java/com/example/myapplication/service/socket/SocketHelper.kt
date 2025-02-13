@@ -12,4 +12,10 @@ object SocketHelper {
     }
 
     fun getLanguage(): String = Locale.getDefault().toString()
+
+    fun extractAndRemoveLeadingNumbers(text: String): Pair<String, String> {
+        val numbers = text.takeWhile { it.isDigit() }
+        val remainingText = text.drop(numbers.length)
+        return Pair(numbers, remainingText)
+    }
 }

@@ -10,15 +10,23 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.mybase.R
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+    abstract val layoutID: Int
+
     data class ActivityConfigData(
         val hideKeyboardWhenClickOutSideEditText: Boolean = false
     )
 
     private lateinit var binding: T
-    abstract val layoutID: Int
+    protected lateinit var navController: NavController
+
     open val activityConfig: ActivityConfigData = ActivityConfigData()
+    open val navHostFragmentID: Int? = null
+
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_UP && activityConfig.hideKeyboardWhenClickOutSideEditText) {
@@ -41,6 +49,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.inflate(layoutInflater, layoutID, null, false)
         setContentView(binding.root)
+        navHostFragmentID?.let{
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(it) as NavHostFragment
+            navController = navHostFragment.navController
+        }
     }
 
     override fun onResume() {

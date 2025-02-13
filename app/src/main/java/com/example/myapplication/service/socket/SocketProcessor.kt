@@ -1,11 +1,11 @@
 package com.example.myapplication.service.socket
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
+import com.example.myapplication.service.socket.SocketHelper.extractAndRemoveLeadingNumbers
 import com.example.myapplication.service.socket.SocketHelper.generateWebSocketKey
 import com.example.myapplication.service.socket.SocketHelper.getLanguage
-import com.example.myapplication.service.socket.SocketMessageCodes.SUCCESS_HANDSHAKE
+import com.example.myapplication.service.socket.model.HandshakeResponse
+import com.example.mybase.extensions.fromJson
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
@@ -14,16 +14,16 @@ import okio.ByteString
 import java.util.concurrent.ConcurrentHashMap
 import java.util.regex.Pattern
 
-object SocketManager {
+object SocketProcessor {
+    private val TAG = "PerplexityWebSocketClient"
 
     private val client = OkHttpClient()
-    private val TAG = "PerplexityWebSocketClient"
     private val headerBuilder = HashMap<String, String>()
     private const val URL_SOCKET = "wss://www.perplexity.ai/socket.io/?EIO=4&transport=websocket"
     private var dataRemoteConfig = SocketRemoteConfig()
-    private var pingInterval: Long = 25000
-    private var pingTimeout: Long = 20000
+    private var handshakeResponse: HandshakeResponse? = null
 
+    private var mWebSocket: WebSocket? = null
 
     init {
         fetchRemoteServer()
@@ -62,7 +62,8 @@ object SocketManager {
         val webSocketListener = object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
                 Log.d(TAG, "onOpen: ")
-                webSocket.send(SUCCESS_HANDSHAKE) // xác nhan ket noi
+                mWebSocket = webSocket
+                webSocket.send(SocketMessageCode.CONNECT_CONFIRMATION.code) // xác nhan ket noi
 
                 val message = """420["perplexity_ask","How much are Stradivarius violins?",{
                     "source":"android",
@@ -84,9 +85,15 @@ object SocketManager {
 
             override fun onMessage(webSocket: WebSocket, text: String) {
                 Log.d(TAG, "onMessage: $text")
-                when {
-                    text.startsWith(SUCCESS_HANDSHAKE) ->{
+                val (code, content) = extractAndRemoveLeadingNumbers(text)
+                when (code) {
+                    SocketMessageCode.SUCCESS_HANDSHAKE.code -> {
+                        handshakeResponse = content.fromJson()
 
+                    }
+
+                    SocketMessageCode.PING.code ->{
+                        mWebSocket?.send(SocketMessageCode.PONG.code)
                     }
                 }
             }
@@ -117,18 +124,7 @@ object SocketManager {
         client.dispatcher.executorService.shutdown()
     }
 
-    private fun schedulePing(webSocket: WebSocket) {
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                if (client.connectionPool.connectionCount() > 0) {
-                    Log.d(TAG, "Sending ping")
-                    webSocket.send("2")
-                    handler.postDelayed(this, pingInterval)
-                }
-            }
-        }, pingInterval)
-    }
+
 }
 
 

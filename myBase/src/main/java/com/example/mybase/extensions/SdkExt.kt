@@ -17,11 +17,11 @@ fun CoroutineScope.launchWithSupervisorJob(
     }
 }
 
-inline fun <reified T> Any.fromJson(json: String): T? {
-    try {
-        Gson().fromJson(json, T::class.java)
-    }catch (e: Exception){
-        return null
+inline fun <reified T> String.fromJson(): T? {
+    return try {
+        Gson().fromJson(this, T::class.java)
+    } catch (e: Exception) {
+        null
     }
 }
 
