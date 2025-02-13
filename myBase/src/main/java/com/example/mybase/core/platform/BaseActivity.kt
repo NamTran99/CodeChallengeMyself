@@ -21,7 +21,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         val hideKeyboardWhenClickOutSideEditText: Boolean = false
     )
 
-    private lateinit var binding: T
+    lateinit var binding: T
     protected lateinit var navController: NavController
 
     open val activityConfig: ActivityConfigData = ActivityConfigData()

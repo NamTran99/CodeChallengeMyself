@@ -1,12 +1,12 @@
 package com.example.myapplication.service.socket
 
-import java.util.concurrent.ConcurrentHashMap
-import java.util.regex.Pattern
-
 enum class SocketMessageCode(val code: String) {
-     SUCCESS_HANDSHAKE("0"),
+    SUCCESS_HANDSHAKE("0"),
     CONNECT_CONFIRMATION("40"),
-    MESSAGE_RESPONSE("420"),
+    ASK_QUESTION("421"),
+    ANSWER_QUESTION_PENDING("42"),
+    ANSWER_QUESTION_COMPLETED("431"),
+    MESSAGE_RESPONSE("42"),
     PING("2"),
     PONG("3")
 }

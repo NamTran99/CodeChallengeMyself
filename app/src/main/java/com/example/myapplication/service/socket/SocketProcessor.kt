@@ -13,6 +13,7 @@ import okhttp3.WebSocketListener
 import okio.ByteString
 import java.util.concurrent.ConcurrentHashMap
 import java.util.regex.Pattern
+import kotlin.math.log
 
 object SocketProcessor {
     private val TAG = "PerplexityWebSocketClient"
@@ -51,6 +52,11 @@ object SocketProcessor {
         headerBuilder["Sec-WebSocket-Accept"] = generateWebSocketKey()
     }
 
+    fun query(toString: String) {
+        Log.d(TAG, "query: ${toString}")
+        mWebSocket?.send(toString)
+    }
+
     fun connect() {
         val request = Request.Builder()
             .url(URL_SOCKET).apply {
@@ -65,35 +71,34 @@ object SocketProcessor {
                 mWebSocket = webSocket
                 webSocket.send(SocketMessageCode.CONNECT_CONFIRMATION.code) // xác nhan ket noi
 
-                val message = """420["perplexity_ask","How much are Stradivarius violins?",{
-                    "source":"android",
-                    "version":"2.15",
-                    "frontend_uuid":"2841bbb3-72f1-4078-b246-947e1de750f9",
-                    "use_inhouse_model":false,
-                    "android_device_id":"9c94edee38ee7427",
-                    "mode":"concise",
-                    "search_focus":"internet",
-                    "is_related_query":false,
-                    "is_voice_to_voice":false,
-                    "timezone":"Asia/Bangkok",
-                    "language":"vi-VN",
-                    "query_source":"helper",
-                    "is_incognito":false
-                }]"""
-                webSocket.send(message)
+//                val message = """420["perplexity_ask","How much are Stradivarius violins?",{
+//                    "source":"android",
+//                    "version":"2.15",
+//                    "frontend_uuid":"2841bbb3-72f1-4078-b246-947e1de750f9",
+//                    "use_inhouse_model":false,
+//                    "android_device_id":"9c94edee38ee7427",
+//                    "mode":"concise",
+//                    "search_focus":"internet",
+//                    "is_related_query":false,
+//                    "is_voice_to_voice":false,
+//                    "timezone":"Asia/Bangkok",
+//                    "language":"vi-VN",
+//                    "query_source":"helper",
+//                    "is_incognito":false
+//                }]"""
+//                webSocket.send(message)
             }
 
             override fun onMessage(webSocket: WebSocket, text: String) {
-                Log.d(TAG, "onMessage: $text")
                 val (code, content) = extractAndRemoveLeadingNumbers(text)
+                Log.d(TAG, "onMessage: $code - $content")
                 when (code) {
                     SocketMessageCode.SUCCESS_HANDSHAKE.code -> {
                         handshakeResponse = content.fromJson()
-
                     }
 
-                    SocketMessageCode.PING.code ->{
-                        mWebSocket?.send(SocketMessageCode.PONG.code)
+                    SocketMessageCode.PING.code -> {
+                        query(SocketMessageCode.PONG.code)
                     }
                 }
             }

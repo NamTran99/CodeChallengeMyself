@@ -1,8 +1,14 @@
 package com.example.myapplication.service.socket
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Base64
+import com.google.gson.Gson
 import java.security.SecureRandom
 import java.util.Locale
+import java.util.UUID
+import android.provider.Settings
+import java.util.TimeZone
 
 object SocketHelper {
     fun generateWebSocketKey(): String {
@@ -18,4 +24,24 @@ object SocketHelper {
         val remainingText = text.drop(numbers.length)
         return Pair(numbers, remainingText)
     }
+
+    fun <T> formatMessage(id: String, vararg data: T): String {
+        val gson = Gson()
+        val jsonData = gson.toJson(data.toList())
+        return "$id$jsonData"
+    }
+
+    fun genUUID() = UUID.randomUUID().toString()
+
+    @SuppressLint("HardwareIds")
+    fun getAndroidDeviceId(context: Context?): String {
+        return context?.let{
+            Settings.Secure.getString(it.contentResolver, Settings.Secure.ANDROID_ID)
+        }?: ""
+    }
+
+    fun getDeviceTimeZone(): String {
+        return TimeZone.getDefault().id
+    }
+
 }
