@@ -75,10 +75,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
-    implementation("com.google.dagger:hilt-android:2.49")
+    implementation("com.google.dagger:hilt-android:2.55")
     implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
     implementation(project(":myBase"))
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.55")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
@@ -87,4 +87,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     implementation("com.guolindev.permissionx:permissionx:1.8.1")
     implementation("io.socket:socket.io-client:2.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 }

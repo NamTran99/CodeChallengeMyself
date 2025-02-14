@@ -25,6 +25,12 @@ object SocketHelper {
         return Pair(numbers, remainingText)
     }
 
+    fun extractCodeAndJsonContent(response: String): Pair<String, String> {
+        val numbers = response.takeWhile { it.isDigit() }
+        val jsonContent = extractJsonString(response)?:""
+        return Pair(numbers, jsonContent)
+    }
+
     fun <T> formatMessage(id: String, vararg data: T): String {
         val gson = Gson()
         val jsonData = gson.toJson(data.toList())
@@ -44,4 +50,9 @@ object SocketHelper {
         return TimeZone.getDefault().id
     }
 
+    fun extractJsonString(rawString: String): String? {
+        val jsonStart = rawString.indexOf("{")
+        if (jsonStart == -1) return null
+        return rawString.substring(jsonStart, rawString.lastIndexOf("}") + 1)
+    }
 }

@@ -1,19 +1,23 @@
 package com.example.myapplication.service.socket
 
+import AnswerResponse
 import android.util.Log
 import com.example.myapplication.service.socket.SocketHelper.extractAndRemoveLeadingNumbers
+import com.example.myapplication.service.socket.SocketHelper.extractCodeAndJsonContent
+import com.example.myapplication.service.socket.SocketHelper.extractJsonString
 import com.example.myapplication.service.socket.SocketHelper.generateWebSocketKey
 import com.example.myapplication.service.socket.SocketHelper.getLanguage
-import com.example.myapplication.service.socket.model.HandshakeResponse
+import com.example.myapplication.service.socket.dto.HandshakeResponse
 import com.example.mybase.extensions.fromJson
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
-import java.util.concurrent.ConcurrentHashMap
-import java.util.regex.Pattern
-import kotlin.math.log
+
+interface ISocketListener{
+    fun onMessage(code: String, jsonContent: String)
+}
 
 object SocketProcessor {
     private val TAG = "PerplexityWebSocketClient"
@@ -25,6 +29,7 @@ object SocketProcessor {
     private var handshakeResponse: HandshakeResponse? = null
 
     private var mWebSocket: WebSocket? = null
+    private var mSocketListener: ISocketListener?= null
 
     init {
         fetchRemoteServer()
@@ -52,9 +57,10 @@ object SocketProcessor {
         headerBuilder["Sec-WebSocket-Accept"] = generateWebSocketKey()
     }
 
-    fun query(toString: String) {
+    fun query(toString: String, listener: ISocketListener? = null) {
         Log.d(TAG, "query: ${toString}")
         mWebSocket?.send(toString)
+        mSocketListener = listener
     }
 
     fun connect() {
@@ -90,8 +96,9 @@ object SocketProcessor {
             }
 
             override fun onMessage(webSocket: WebSocket, text: String) {
-                val (code, content) = extractAndRemoveLeadingNumbers(text)
+                val (code, content) = extractCodeAndJsonContent(text)
                 Log.d(TAG, "onMessage: $code - $content")
+                mSocketListener?.onMessage(code, content)
                 when (code) {
                     SocketMessageCode.SUCCESS_HANDSHAKE.code -> {
                         handshakeResponse = content.fromJson()
@@ -99,6 +106,11 @@ object SocketProcessor {
 
                     SocketMessageCode.PING.code -> {
                         query(SocketMessageCode.PONG.code)
+                    }
+
+                    SocketMessageCode.ANSWER_QUESTION_PENDING.code -> {
+                        val data = extractJsonString(content)?.fromJson<AnswerResponse>()
+                        Log.d(TAG, "onMessage: NamTD88 - ${data}")
                     }
                 }
             }
@@ -133,42 +145,42 @@ object SocketProcessor {
 }
 
 
-// Define the CookieJar interface, similar to InterfaceC4265p
-interface CookieJar {
-    fun saveCookies(url: String, cookies: List<String>)
-    fun loadCookies(url: String): List<String>
-}
-
-class SimpleCookieJar : CookieJar {
-
-    // Store cookies per domain in a thread-safe map
-    private val cookieStore: ConcurrentHashMap<String, MutableList<String>> = ConcurrentHashMap()
-
-    override fun saveCookies(url: String, cookies: List<String>) {
-        val domain = extractDomain(url)
-        if (domain != null) {
-            val existingCookies = cookieStore.getOrPut(domain) { mutableListOf() }
-            cookies.forEach { cookie ->
-                if (!existingCookies.contains(cookie)) {
-                    existingCookies.add(cookie)
-                }
-            }
-        }
-    }
-
-    override fun loadCookies(url: String): List<String> {
-        val domain = extractDomain(url)
-        return if (domain != null) {
-            cookieStore[domain]?.toList() ?: emptyList()
-        } else {
-            emptyList()
-        }
-    }
-
-    // Extracts the domain from the given URL
-    private fun extractDomain(url: String): String? {
-        val pattern = Pattern.compile("^(?:https?://)?(?:www\\.)?([^/]+)")
-        val matcher = pattern.matcher(url)
-        return if (matcher.find()) matcher.group(1) else null
-    }
-}
+//// Define the CookieJar interface, similar to InterfaceC4265p
+//interface CookieJar {
+//    fun saveCookies(url: String, cookies: List<String>)
+//    fun loadCookies(url: String): List<String>
+//}
+//
+//class SimpleCookieJar : CookieJar {
+//
+//    // Store cookies per domain in a thread-safe map
+//    private val cookieStore: ConcurrentHashMap<String, MutableList<String>> = ConcurrentHashMap()
+//
+//    override fun saveCookies(url: String, cookies: List<String>) {
+//        val domain = extractDomain(url)
+//        if (domain != null) {
+//            val existingCookies = cookieStore.getOrPut(domain) { mutableListOf() }
+//            cookies.forEach { cookie ->
+//                if (!existingCookies.contains(cookie)) {
+//                    existingCookies.add(cookie)
+//                }
+//            }
+//        }
+//    }
+//
+//    override fun loadCookies(url: String): List<String> {
+//        val domain = extractDomain(url)
+//        return if (domain != null) {
+//            cookieStore[domain]?.toList() ?: emptyList()
+//        } else {
+//            emptyList()
+//        }
+//    }
+//
+//    // Extracts the domain from the given URL
+//    private fun extractDomain(url: String): String? {
+//        val pattern = Pattern.compile("^(?:https?://)?(?:www\\.)?([^/]+)")
+//        val matcher = pattern.matcher(url)
+//        return if (matcher.find()) matcher.group(1) else null
+//    }
+//}

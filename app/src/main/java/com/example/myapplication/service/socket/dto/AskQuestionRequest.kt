@@ -1,4 +1,4 @@
-package com.example.myapplication.service.socket.model
+package com.example.myapplication.service.socket.dto
 
 import com.example.myapplication.app.MyApplication
 import com.example.myapplication.service.socket.SocketHelper.formatMessage
@@ -39,6 +39,6 @@ data class AskQuestionConfig(
     @SerializedName("is_voice_to_voice") val isVoiceToVoice: Boolean =false,
     val timezone: String = getDeviceTimeZone(),
     val language: String = getLanguage(),
-    @SerializedName("query_source") val querySource: String = "autosuggest",
+    @SerializedName("query_source") val querySource: String = "home",
     @SerializedName("is_incognito") val isIncognito: Boolean = false
 )
