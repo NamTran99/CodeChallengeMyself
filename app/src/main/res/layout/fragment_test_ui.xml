@@ -17,11 +17,14 @@
         android:focusableInTouchMode="true"
         tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtInputField"
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animBox"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/anim_loading_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-          />
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

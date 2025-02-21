@@ -21,9 +21,6 @@ class FragmentTestUI : BaseFragment<FragmentTestUiBinding>() {
 
     private fun initView() {
         binding.apply {
-            edtInputField.formatInputToDecimalPlaces("$","2",5){
-                Log.d("TAG", "initView-NamTD8: ${it}")
-            }
         }
     }
 
